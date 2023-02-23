@@ -1,0 +1,18 @@
+<mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>Shiba Inu</mat-card-title>
+        <mat-card-subtitle>Small</mat-card-subtitle>
+        <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+        <div *ngFor="let skill of skills">
+            <label for="">{{skill.name}}</label>
+            <mat-slider min="0" max="100000" step="1000" showTickMarks discrete [ngStyle]="{'background-color': skill.color}" [displayWith]="formatLabel">
+                <input matSliderThumb>
+              </mat-slider>
+        </div>
+        
+    </mat-card-content>
+  </mat-card>
