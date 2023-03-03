@@ -6,6 +6,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 import { AppComponent } from './app.component';
 import { CrudStudentComponent } from './components/crud-student/crud-student.component';
@@ -13,6 +17,7 @@ import { ListStudentComponent } from './components/list-student/list-student.com
 import { StudentComponent } from './components/student/student.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SubjectComponent } from './components/subject/subject.component';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +34,11 @@ import { SubjectComponent } from './components/subject/subject.component';
     MatTableModule,
     MatIconModule,
     MatCardModule,
-    MatSliderModule
+    MatSliderModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

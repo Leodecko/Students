@@ -14,5 +14,6 @@ export class SubjectComponent {
     return `${value}`;
   }
 
-  skills: any[] = [{name:'Rapidez',color:'red'},{name:'Comprension',color:'blue'}];
+  skillsSpanishSubject: any[] = [{name:'Lectura en voz alta'},{name:'Comprension lectora'}, {name:'Legibilidad'}, {name: 'Coherencia'}];
+  skillsMathSubject: any[] = [{name:'Suma'},{name:'Resta'}, {name:'Multiplicación'}, {name: 'División'}];
 }
