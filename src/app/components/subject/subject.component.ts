@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-subject',
@@ -6,6 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./subject.component.sass']
 })
 export class SubjectComponent {
+
+  @Input() score: number = 0;
+  @Input() name: string = "";
+
   formatLabel(value: number): string {
     if (value >= 1000) {
       return Math.round(value / 1000) + 'k';

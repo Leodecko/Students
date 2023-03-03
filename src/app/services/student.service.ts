@@ -12,7 +12,7 @@ export class StudentService {
     {id:1,name:"fulanito"},
     {id:2,name:"sutanito"},
     {id:1,name:"fulanito"},
-    {id:2,name:"sutanito"},
+    {id:2,name:"sutanito"},   
     {id:1,name:"fulanito"},
     {id:2,name:"sutanito"}
   ];
