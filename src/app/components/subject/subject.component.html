@@ -1,18 +1,35 @@
 <mat-card class="example-card">
     <mat-card-header>
       <mat-card-title-group>
-        <mat-card-title>Shiba Inu</mat-card-title>
-        <mat-card-subtitle>Small</mat-card-subtitle>
-        <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+        <mat-card-title>Español</mat-card-title>
+        <mat-card-subtitle>Habilidades</mat-card-subtitle>
+        <img mat-card-sm-image src="https://cdn-icons-png.flaticon.com/512/8356/8356958.png" >
       </mat-card-title-group>
     </mat-card-header>
     <mat-card-content>
-        <div *ngFor="let skill of skills">
+        <div *ngFor="let skill of skillsSpanishSubject">
             <label for="">{{skill.name}}</label>
             <mat-slider min="0" max="100000" step="1000" showTickMarks discrete [ngStyle]="{'background-color': skill.color}" [displayWith]="formatLabel">
                 <input matSliderThumb>
-              </mat-slider>
+            </mat-slider>
         </div>
-        
     </mat-card-content>
-  </mat-card>
+</mat-card>
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title>Matemáticas</mat-card-title>
+      <mat-card-subtitle>Habilidades</mat-card-subtitle>
+      <img mat-card-sm-image src="https://cdn-icons-png.flaticon.com/512/897/897368.png" >
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+      <div *ngFor="let skill of skillsMathSubject">
+          <label for="">{{skill.name}}</label>
+          <mat-slider min="0" max="100000" step="1000" showTickMarks discrete [ngStyle]="{'background-color': skill.color}" [displayWith]="formatLabel">
+              <input matSliderThumb>
+          </mat-slider>
+      </div>
+  </mat-card-content>
+</mat-card>
