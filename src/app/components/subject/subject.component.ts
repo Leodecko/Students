@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ISKill } from 'src/app/interfaces/ISubject';
 
 @Component({
   selector: 'app-subject',
@@ -7,8 +8,9 @@ import { Component, Input } from '@angular/core';
 })
 export class SubjectComponent {
 
-  @Input() score: number = 0;
-  @Input() name: string = "";
+  @Input() subjectName: string = "";
+
+  //@Input() skills: ISKill[] = [];
 
   formatLabel(value: number): string {
     if (value >= 1000) {
@@ -18,6 +20,5 @@ export class SubjectComponent {
     return `${value}`;
   }
 
-  skillsSpanishSubject: any[] = [{name:'Lectura en voz alta'},{name:'Comprension lectora'}, {name:'Legibilidad'}, {name: 'Coherencia'}];
-  skillsMathSubject: any[] = [{name:'Suma'},{name:'Resta'}, {name:'Multiplicación'}, {name: 'División'}];
+  
 }

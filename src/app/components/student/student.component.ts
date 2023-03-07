@@ -5,7 +5,7 @@ import { Student } from 'src/app/interfaces/IStudent';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { StudentScoreService } from 'src/app/services/student-score.service';
+import { SubjectService } from 'src/app/services/subject/subject.service';
 
 @Component({
   selector: 'app-student',
@@ -21,32 +21,46 @@ import { StudentScoreService } from 'src/app/services/student-score.service';
 })
 
 export class StudentComponent {
-  dataSource = new MatTableDataSource<Student>(this._studentServce.dummyStudents);
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.paginator._intl.itemsPerPageLabel= 'Elementos por página';
-    this.dataSource.sort = this.sort;
-    
-  }
-
-  constructor(public _studentServce : StudentService, private _studentScoreService : StudentScoreService){
-    
-  }
-  
+  dataSource = new MatTableDataSource<Student>();
   columnsToDisplay = ['id','name'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedElement: null;
-  
- hola(){alert('quepedo')
- };
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  private state: Student[] = [];
 
-  getUserSubjects(event:any){
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+
+    this.paginator._intl.itemsPerPageLabel= 'Elementos por página';
+
+    this.dataSource.sort = this.sort;
     
-    console.log(event);
+    this._studentServce.GetStudents().subscribe(result =>{
+
+      this.dataSource.data = result;
+
+      this.state = result;
+
+    },
+    err => console.log(err) );
+
+  }
+
+  constructor(public _studentServce : StudentService, private subjectService : SubjectService){
+    
+  }
+
+  getUserSubjects(studentId:number){
+    this.subjectService.getStudentSubjects(studentId).subscribe(result => {
+
+      const currentStudent = this.state.find(x => x.id == studentId);
+
+      currentStudent!.subjects = result;
+
+      this.dataSource.data = this.state;
+
+    }, err => console.log(err));
   }
 
   applyFilter(event: Event) {
