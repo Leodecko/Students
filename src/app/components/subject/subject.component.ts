@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { ISKill } from 'src/app/interfaces/ISubject';
+import { ISkill } from 'src/app/interfaces/ISkill';
+import { FormControl } from '@angular/forms';   
 
 @Component({
   selector: 'app-subject',
@@ -10,15 +11,31 @@ export class SubjectComponent {
 
   @Input() subjectName: string = "";
 
-  //@Input() skills: ISKill[] = [];
+  @Input() skills: ISkill[] = [];
 
-  formatLabel(value: number): string {
-    if (value >= 1000) {
-      return Math.round(value / 1000) + 'k';
-    }
+  valorSlider = new FormControl(50);
 
-    return `${value}`;
+  editMode:boolean = false;
+  
+  changeToEditMode(){
+    this.editMode = true;
   }
+
+  saveChanges(){
+    this.editMode = false;
+
+    var body = this.skills.map(skill => {skill.id,skill.score});
+
+    console.log(body);
+  }
+
+  // formatLabel(value: number): string {
+  //   if (value >= 1) {
+  //     return Math.round(value / 1000) + 'k';
+  //   }
+
+  //   return `${value}`;
+  // }
 
   
 }

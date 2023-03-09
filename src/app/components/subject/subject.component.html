@@ -7,11 +7,12 @@
       </mat-card-title-group>
     </mat-card-header>
     <mat-card-content>
-        <!-- <div *ngFor="let skill of skillsSpanishSubject">
+        <div *ngFor="let skill of skills" class="row">
             <label for="">{{skill.name}}</label>
-            <mat-slider min="0" max="100000" step="1000" showTickMarks discrete [ngStyle]="{'background-color': skill.color}" [displayWith]="formatLabel">
-                <input matSliderThumb>
-            </mat-slider>
-        </div> -->
+            <input type="text" *ngIf="editMode" class="form-control" placeholder="score" [(ngModel)]="skill.score">
+            <mat-progress-bar mode="determinate" value="{{skill.score}}"></mat-progress-bar>
+        </div>
+        <button *ngIf="!editMode" class="btn btn-primary col-3 justify-content-center" (click)="changeToEditMode()">Editar</button>
+        <button *ngIf="editMode" class="btn btn-secondary col-3 justify-content-center" (click)="saveChanges()">Save</button>
     </mat-card-content>
 </mat-card>

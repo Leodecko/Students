@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { SubjectService } from 'src/app/services/subject/subject.service';
+import { StudentScoreService } from 'src/app/services/student-score.service';
+import { ISkill } from 'src/app/interfaces/ISkill';
 
 @Component({
   selector: 'app-student',
@@ -22,7 +24,7 @@ import { SubjectService } from 'src/app/services/subject/subject.service';
 
 export class StudentComponent {
   dataSource = new MatTableDataSource<Student>();
-  columnsToDisplay = ['id','name'];
+  columnsToDisplay = ['id','name', 'lastName'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedElement: null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -36,7 +38,7 @@ export class StudentComponent {
 
     this.dataSource.sort = this.sort;
     
-    this._studentServce.GetStudents().subscribe(result =>{
+    this._studentService.GetStudents().subscribe(result =>{
 
       this.dataSource.data = result;
 
@@ -45,14 +47,17 @@ export class StudentComponent {
     },
     err => console.log(err) );
 
+
   }
 
-  constructor(public _studentServce : StudentService, private subjectService : SubjectService){
+  constructor(public _studentService : StudentService, 
+    private _subjectService : SubjectService,
+    private _studentScoreService : StudentScoreService){
     
   }
 
-  getUserSubjects(studentId:number){
-    this.subjectService.getStudentSubjects(studentId).subscribe(result => {
+  getUserSubjectsScore(studentId:number){
+    this._subjectService.getStudentSubjects(studentId).subscribe(result => {
 
       const currentStudent = this.state.find(x => x.id == studentId);
 

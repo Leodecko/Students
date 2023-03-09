@@ -6,11 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
-import { MatSliderModule } from '@angular/material/slider';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { CrudStudentComponent } from './components/crud-student/crud-student.component';
@@ -34,13 +35,14 @@ import { SubjectComponent } from './components/subject/subject.component';
     BrowserAnimationsModule,
     MatTableModule,
     MatIconModule,
-    MatCardModule,
-    MatSliderModule,
+    MatCardModule,  
+    FormsModule,
     MatPaginatorModule,
     MatSortModule,
     MatInputModule,
     MatFormFieldModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

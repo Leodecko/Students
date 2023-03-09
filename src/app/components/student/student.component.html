@@ -16,7 +16,7 @@
   <ng-container matColumnDef="expand">
     <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
     <td mat-cell *matCellDef="let element">
-      <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation();getUserSubjects(element.id);">
+      <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation();getUserSubjectsScore(element.id)">
         <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
         <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
       </button>
@@ -24,9 +24,12 @@
   </ng-container>
   <ng-container matColumnDef="expandedDetail">
     <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
-      <div class="example-element-detail"
-           [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-        <app-subject [subjectName]="subject.name" *ngFor="let subject of element.subjects"></app-subject>
+      <div class="example-element-detail container" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+        <div class="row justify-content-evenly">
+          <div *ngFor="let subject of element.subjects" class="col-6">
+            <app-subject [subjectName]="subject.name" [skills]="subject.skills" ></app-subject>
+          </div>
+        </div>
       </div>
     </td>
   </ng-container>

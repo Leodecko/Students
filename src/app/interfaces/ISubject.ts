@@ -1,11 +1,8 @@
+import { ISkill } from "./ISkill"
+
 export interface ISubject{
     id : number,
     name : string
-    skills: ISKill[]
+    skills: ISkill[]
 }
 
-export interface ISKill {
-    id:number,
-    name: string,
-    score:number
-}
