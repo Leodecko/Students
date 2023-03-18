@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ISkillScore } from 'src/app/interfaces/ISkillScore';
 import { ISubject } from 'src/app/interfaces/ISubject';
 import { environment } from 'src/enviroments/environment';
 
@@ -15,7 +16,10 @@ export class SubjectService {
 
   getStudentSubjects(studentId:number) : Observable<ISubject[]> {
     return this.httpClient.get<ISubject[]>(`${this.scoreBySubjectUrl}${studentId}`);
+  }
 
+  updateStudentSubjectsScore(listScores: ISkillScore[]) : Observable<void>{
+    return this.httpClient.put<void>(this.scoreBySubjectUrl, listScores);
   }
 
 }

@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { ISkill } from 'src/app/interfaces/ISkill';
 import { FormControl } from '@angular/forms';   
+import { SubjectService } from 'src/app/services/subject/subject.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-subject',
@@ -13,10 +15,12 @@ export class SubjectComponent {
 
   @Input() skills: ISkill[] = [];
 
-  valorSlider = new FormControl(50);
-
   editMode:boolean = false;
-  
+
+  constructor(private _subjectService: SubjectService){
+
+  }
+
   changeToEditMode(){
     this.editMode = true;
   }
@@ -24,18 +28,18 @@ export class SubjectComponent {
   saveChanges(){
     this.editMode = false;
 
-    var body = this.skills.map(skill => {skill.id,skill.score});
+    var body = this.skills.map(skill => {
+      return {id: skill.id, score: skill.score};
+    });
 
-    console.log(body);
-  }
+    Swal.fire(
+      'Good job!',
+      'The student has been updated!',
+      'success'
+    )
 
-  // formatLabel(value: number): string {
-  //   if (value >= 1) {
-  //     return Math.round(value / 1000) + 'k';
-  //   }
+    this._subjectService.updateStudentSubjectsScore(body).subscribe(() => {
 
-  //   return `${value}`;
-  // }
-
-  
+    })
+  }  
 }

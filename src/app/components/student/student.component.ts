@@ -8,6 +8,7 @@ import { MatSort } from '@angular/material/sort';
 import { SubjectService } from 'src/app/services/subject/subject.service';
 import { StudentScoreService } from 'src/app/services/student-score.service';
 import { ISkill } from 'src/app/interfaces/ISkill';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-student',
@@ -24,7 +25,7 @@ import { ISkill } from 'src/app/interfaces/ISkill';
 
 export class StudentComponent {
   dataSource = new MatTableDataSource<Student>();
-  columnsToDisplay = ['id','name', 'lastName'];
+  columnsToDisplay = ['name', 'lastName', 'email'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedElement: null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -38,6 +39,16 @@ export class StudentComponent {
 
     this.dataSource.sort = this.sort;
     
+    this.getStudents()
+  }
+
+  constructor(public _studentService : StudentService, 
+    private _subjectService : SubjectService,
+    private _studentScoreService : StudentScoreService){
+    
+  }
+
+  getStudents(){
     this._studentService.GetStudents().subscribe(result =>{
 
       this.dataSource.data = result;
@@ -47,13 +58,6 @@ export class StudentComponent {
     },
     err => console.log(err) );
 
-
-  }
-
-  constructor(public _studentService : StudentService, 
-    private _subjectService : SubjectService,
-    private _studentScoreService : StudentScoreService){
-    
   }
 
   getUserSubjectsScore(studentId:number){
@@ -71,5 +75,31 @@ export class StudentComponent {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+
+  
+
+  deleteStudent(studentId: number){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._studentService.DeleteStudent(studentId).subscribe(() => {
+          this.getStudents();
+        })
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    });
   }
 }

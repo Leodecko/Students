@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MatTableModule } from '@angular/material/table';
@@ -11,23 +12,28 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { AppComponent } from './app.component';
-import { CrudStudentComponent } from './components/crud-student/crud-student.component';
-import { ListStudentComponent } from './components/list-student/list-student.component';
 import { StudentComponent } from './components/student/student.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SubjectComponent } from './components/subject/subject.component';
+import { AddStudentComponent } from './components/add-student/add-student.component';
+import { AddSubjectComponent } from './components/add-subject/add-subject.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CrudStudentComponent,
-    ListStudentComponent,
     StudentComponent,
-    SubjectComponent
+    SubjectComponent,
+    AddStudentComponent,
+    AddSubjectComponent
   ],
   imports: [
     BrowserModule,
@@ -35,14 +41,19 @@ import { SubjectComponent } from './components/subject/subject.component';
     BrowserAnimationsModule,
     MatTableModule,
     MatIconModule,
-    MatCardModule,  
+    MatExpansionModule,
+    MatCardModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatGridListModule,
+    ReactiveFormsModule,  
     FormsModule,
     MatPaginatorModule,
     MatSortModule,
     MatInputModule,
     MatFormFieldModule,
     HttpClientModule,
-    MatProgressBarModule
+    MatProgressBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

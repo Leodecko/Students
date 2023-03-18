@@ -12,7 +12,7 @@
             <input type="text" *ngIf="editMode" class="form-control" placeholder="score" [(ngModel)]="skill.score">
             <mat-progress-bar mode="determinate" value="{{skill.score}}"></mat-progress-bar>
         </div>
-        <button *ngIf="!editMode" class="btn btn-primary col-3 justify-content-center" (click)="changeToEditMode()">Editar</button>
-        <button *ngIf="editMode" class="btn btn-secondary col-3 justify-content-center" (click)="saveChanges()">Save</button>
+        <button *ngIf="!editMode" class="btn btn-primary col-6 justify-content-center" (click)="changeToEditMode()">Editar</button>
+        <button *ngIf="editMode" class="btn btn-secondary col-6 justify-content-center" (click)="saveChanges()">Save</button>
     </mat-card-content>
 </mat-card>
