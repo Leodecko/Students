@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import Swal from 'sweetalert2';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +17,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { AppComponent } from './app.component';
 import { StudentComponent } from './components/student/student.component';
@@ -24,6 +26,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SubjectComponent } from './components/subject/subject.component';
 import { AddStudentComponent } from './components/add-student/add-student.component';
 import { AddSubjectComponent } from './components/add-subject/add-subject.component';
+import { CardComponent } from './components/card/card.component';
+import { AuthorizedComponent } from './security/authorized/authorized.component';
+import { LoginComponent } from './security/login/login.component';
+import { FormAutenticationComponent } from './security/form-autentication/form-autentication.component';
+import { SignUpComponent } from './security/sign-up/sign-up.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component'
+import { AuthenticationInterceptor } from './security/interceptors/AuthenticationInterceptor';
 
 
 
@@ -33,7 +42,13 @@ import { AddSubjectComponent } from './components/add-subject/add-subject.compon
     StudentComponent,
     SubjectComponent,
     AddStudentComponent,
-    AddSubjectComponent
+    AddSubjectComponent,
+    CardComponent,
+    AuthorizedComponent,
+    LoginComponent,
+    FormAutenticationComponent,
+    SignUpComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
@@ -54,8 +69,12 @@ import { AddSubjectComponent } from './components/add-subject/add-subject.compon
     MatFormFieldModule,
     HttpClientModule,
     MatProgressBarModule,
+    MatToolbarModule,
+    MatMenuModule
   ],
-  providers: [],
+  providers: [
+    //{ provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,4 +7,36 @@ import { Component } from '@angular/core';
 })
 export class AddSubjectComponent {
 
+  step = 0;
+  textSubject: string;
+  textSkills: string[] = [];
+  currentTextSkill: string = '';
+  isEmpty: boolean = true;
+
+
+  constructor(){
+
+  }
+
+  verifyIsEmpty() {
+    this.isEmpty = this.textSubject.length === 0;
+  }
+
+  addSkill() {
+    this.textSkills.push(this.currentTextSkill);
+    this.currentTextSkill = '';
+  }
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
+  }
+
 }

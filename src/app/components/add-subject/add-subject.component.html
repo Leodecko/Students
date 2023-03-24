@@ -1,6 +1,48 @@
-<header class="container-xxl">
-    <h1>Add Subject</h1>
-  </header>
+<app-toolbar></app-toolbar>
 <div class="container">
+    <mat-accordion class="example-headers-align">
+  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        New Subject
+      </mat-panel-title>
+      <mat-panel-description>
+        Type a subject name
+        <mat-icon>account_circle</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
 
-  </div>
+    <mat-form-field appearance="fill">
+      <mat-label>Subject name</mat-label>
+      <input matInput [(ngModel)]="textSubject" (keyup)="verifyIsEmpty()">
+    </mat-form-field>
+      <button mat-stroked-button color="warn" routerLink="/home">Back</button>
+      <button mat-stroked-button color="primary" (click)="nextStep()">Next</button>
+    
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Skills of new subject
+      </mat-panel-title>
+      <mat-panel-description>
+        Type the skills of the subject
+        <mat-icon>map</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Skill</mat-label>
+      <input matInput [(ngModel)]="currentTextSkill">
+    </mat-form-field>
+
+    <!-- <mat-action-row> -->
+      <button mat-stroked-button color="warn" (click)="prevStep()">Previous</button>
+      <button mat-stroked-button color="primary" (click)="addSkill()">Add Skill</button>
+      <button mat-raised-button color="primary" (click)="nextStep()">Finish and create Subject</button>
+    <!-- </mat-action-row> -->
+  </mat-expansion-panel>
+</mat-accordion>
+</div>
+<app-card *ngIf="!isEmpty" [textSubjectChild]="textSubject" [textSkillChild]="textSkills"></app-card>

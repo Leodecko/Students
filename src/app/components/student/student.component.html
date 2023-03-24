@@ -1,14 +1,21 @@
-<header class="container-xxl">
-  <h1>Student statistics</h1>
-</header>
+<app-toolbar></app-toolbar>
 <div class="container">
-  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <button mat-raised-button color="primary" routerLink="/newStudent">
-      Add student
-    </button>
-    <button mat-raised-button color="primary" routerLink="/newSubject">Add subject</button>
-  </div>
-  <div>
+  <app-authorized [rol]="'admin'">
+    <ng-container Authorized>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button mat-raised-button [matMenuTriggerFor]="menu">Add</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item routerLink="/newStudent">Student</button>
+  <button mat-menu-item routerLink="/newSubject">Subject</button>
+</mat-menu>
+        <!-- <button mat-raised-button color="primary" routerLink="/newStudent">
+          Add student
+        </button>
+        <button mat-raised-button color="primary" routerLink="/newSubject">Add subject</button> -->
+      </div>
+    </ng-container>
+  </app-authorized>
+  <div class="search">
     <mat-form-field>
       <mat-label>Buscar</mat-label>
       <input matInput (keyup)="applyFilter($event)" #input autocomplete="off" />
@@ -67,7 +74,7 @@
               element == expandedElement ? 'expanded' : 'collapsed'
             "
           >
-            <div class="row justify-content-beetwee">
+            <div class="row justify-content-beetween">
               <div *ngFor="let subject of element.subjects" class="col-4">
                 <app-subject
                   [subjectName]="subject.name"
@@ -99,4 +106,5 @@
     </mat-paginator>
   </div>
 </div>
+
     

@@ -1,0 +1,19 @@
+<header>
+    <mat-toolbar>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+          <mat-icon>insights</mat-icon>
+        </button>
+        <span>Student Statics</span>
+        <span class="example-spacer"></span>
+        <app-authorized>
+            <ng-container Authorized>
+                <span>Hi, {{securityService.obtainFieldJWt('email')}}</span>
+                <a mat-button (click)="logOut()">Log Out</a>
+            </ng-container>
+            <ng-container NotAuthorized>
+                <a mat-raised-button color="primary" routerLink="/login">Log In</a>
+                <a mat-raised-button color="primary" routerLink="/signUp">Sign up</a>
+            </ng-container>
+        </app-authorized>
+      </mat-toolbar>
+</header>

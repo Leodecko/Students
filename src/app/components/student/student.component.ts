@@ -42,6 +42,10 @@ export class StudentComponent {
     this.getStudents()
   }
 
+  // ngOnInit(){
+  //   this.getStudents()
+  // }
+
   constructor(public _studentService : StudentService, 
     private _subjectService : SubjectService,
     private _studentScoreService : StudentScoreService){
