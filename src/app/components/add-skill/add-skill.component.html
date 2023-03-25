@@ -1,0 +1,41 @@
+<app-toolbar></app-toolbar>
+<div class="container">
+<ng-container [ngSwitch]="stepperOrientation | async">
+    <div *ngSwitchCase="'horizontal'">Make your screen smaller to see a vertical stepper</div>
+    <div *ngSwitchCase="'vertical'">Make your screen larger to see a horizontal stepper</div>
+  </ng-container>
+  
+  <mat-stepper
+    class="example-stepper"
+    [orientation]="(stepperOrientation | async)!">
+    <mat-step  label="Select the subject">
+      <form >
+          <mat-form-field appearance="fill">
+            <mat-label>Subject</mat-label>
+            <mat-select name="selectedSubjectId" [(ngModel)]="selectedSubjectId" (change)="onChange()">
+              <mat-option *ngFor="let subject of subjects" [value]="subject.id">
+                {{subject.name}}
+            </mat-option>
+            </mat-select>
+          </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+      <form [formGroup]="secondFormGroup">
+        <mat-form-field appearance="fill">
+          <mat-label>Skill Name</mat-label>
+          <input matInput formControlName="secondCtrl" required>
+                 <mat-error>{{errMesaggeSkillNameInput()}}</mat-error>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext [disabled]="secondFormGroup.invalid" (click)="createSkill()">Create</button>
+          <button mat-button color="warn" matStepperPrevious>Exit</button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-stepper>
+</div>

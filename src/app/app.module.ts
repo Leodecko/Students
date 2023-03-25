@@ -19,6 +19,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AppComponent } from './app.component';
 import { StudentComponent } from './components/student/student.component';
@@ -33,6 +35,7 @@ import { FormAutenticationComponent } from './security/form-autentication/form-a
 import { SignUpComponent } from './security/sign-up/sign-up.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component'
 import { SecurityInterceptorService } from './interceptors/security-interceptor.service';
+import { AddSkillComponent } from './components/add-skill/add-skill.component';
 
 
 
@@ -48,7 +51,8 @@ import { SecurityInterceptorService } from './interceptors/security-interceptor.
     LoginComponent,
     FormAutenticationComponent,
     SignUpComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    AddSkillComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +74,9 @@ import { SecurityInterceptorService } from './interceptors/security-interceptor.
     HttpClientModule,
     MatProgressBarModule,
     MatToolbarModule,
-    MatMenuModule
+    MatMenuModule,
+    MatStepperModule,
+    MatSelectModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS, 

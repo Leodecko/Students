@@ -29,7 +29,7 @@ export class SecurityService {
     const expiration = localStorage.getItem(this.tokenExpiration);
     const expirationDate = new Date(this.tokenExpiration);
 
-    if(expirationDate > new Date()) {
+    if(expirationDate <= new Date()) {
       this.logOut();
       return false;
     }
@@ -53,11 +53,11 @@ export class SecurityService {
   }
 
   signUp(credentials: ICredentials): Observable<IAutenticationResponse>{
-    return this.httpClient.post<IAutenticationResponse>(this.accountsUrl + 'Create', credentials)
+    return this.httpClient.post<IAutenticationResponse>(this.accountsUrl + 'create', credentials)
   }
 
   logIn(credentials: ICredentials): Observable<IAutenticationResponse>{
-    return this.httpClient.post<IAutenticationResponse>(this.accountsUrl + 'LogIn', credentials)
+    return this.httpClient.post<IAutenticationResponse>(this.accountsUrl + 'login', credentials)
   }
 
   saveToken(autenticationResponse : IAutenticationResponse){

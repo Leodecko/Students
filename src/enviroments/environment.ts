@@ -7,6 +7,7 @@ export const environment = {
     myAppUrl: 'https://localhost:7160/',
     studentApiUrl: 'api/Student/',
     subjectApiUrl: 'api/Subject/',
+    skillApiUrl: 'api/Skill/',
     accountsApiUrl: 'api/Accounts/',
     scoreStudentApiUrl: 'api/ScoreStudent/'
   };

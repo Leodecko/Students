@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { IAddSubject } from 'src/app/interfaces/IAddSubject';
 import { ISkillScore } from 'src/app/interfaces/ISkillScore';
 import { ISubject } from 'src/app/interfaces/ISubject';
@@ -14,6 +14,10 @@ export class SubjectService {
   private scoreBySubjectUrl : string = environment.myAppUrl + environment.subjectApiUrl
 
   constructor(private httpClient: HttpClient) { }
+
+  GetSubjects() : Observable<ISubject[]> {
+    return this.httpClient.get<ISubject[]>(this.scoreBySubjectUrl);
+  }
 
   getStudentSubjects(studentId:number) : Observable<ISubject[]> {
     return this.httpClient.get<ISubject[]>(`${this.scoreBySubjectUrl}${studentId}`);

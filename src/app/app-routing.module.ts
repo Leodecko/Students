@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddSkillComponent } from './components/add-skill/add-skill.component';
 import { AddStudentComponent } from './components/add-student/add-student.component';
 import { AddSubjectComponent } from './components/add-subject/add-subject.component';
 import { StudentComponent } from './components/student/student.component';
@@ -11,6 +12,7 @@ const routes: Routes = [
   {path:'home',component:StudentComponent},
   {path:'newStudent',component:AddStudentComponent, canActivate: [IsAdminGuard]},
   {path:'newSubject',component:AddSubjectComponent, canActivate: [IsAdminGuard]},
+  {path:'newSkill', component:AddSkillComponent, canActivate: [IsAdminGuard]},
   {path:'login',component:LoginComponent},
   {path:'signUp',component:SignUpComponent},
   {path: '**', redirectTo: 'home', pathMatch: 'full'}
