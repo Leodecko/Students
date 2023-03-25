@@ -27,7 +27,7 @@ export class StudentComponent {
   dataSource = new MatTableDataSource<Student>();
   columnsToDisplay = ['name', 'lastName', 'email'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
-  expandedElement: null;
+  expandedElement: null; 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   private state: Student[] = [];

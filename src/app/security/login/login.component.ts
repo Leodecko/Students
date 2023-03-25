@@ -12,6 +12,9 @@ import { SecurityService } from '../security.service';
 
 export class LoginComponent {
 
+  loginError = false;
+  loginErrorMessage = "";
+
   constructor(private securityService: SecurityService,
     private router: Router){
 
@@ -26,7 +29,6 @@ export class LoginComponent {
       this.securityService.saveToken(response);
       this.router.navigate(['home'])
     })
-
   }
 
 }

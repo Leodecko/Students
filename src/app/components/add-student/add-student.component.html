@@ -2,12 +2,14 @@
 <div class="container">
   <form [formGroup]="form">
   <mat-card class="card">
+    <mat-card-title>Add Student</mat-card-title>
   <mat-grid-list cols="3" rowHeight="100px">
     <mat-grid-tile>
         <mat-form-field appearance="outline">
           <mat-label>Name</mat-label>
           <input matInput formControlName="name">
           <mat-icon matSuffix>person</mat-icon>
+          <mat-error>{{errMesaggeInput()}}</mat-error>
         </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile>
@@ -15,6 +17,7 @@
           <mat-label>Last Name</mat-label>
           <input matInput formControlName="lastName">
           <mat-icon matSuffix>person</mat-icon>
+          <mat-error>{{errMesaggeInput()}}</mat-error>
         </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile>
@@ -22,10 +25,11 @@
           <mat-label>Email</mat-label>
           <input matInput formControlName="email">
           <mat-icon matSuffix>attach_email</mat-icon>
+          <mat-error>{{errMesaggeEmailInput()}}</mat-error>
         </mat-form-field>
     </mat-grid-tile>
     <mat-grid-tile colspan="3">
-      <button mat-raised-button color="primary" (click)="addStudent()">Add</button>
+      <button mat-raised-button color="primary" (click)="addStudent()" [disabled]="form.invalid">Add</button>
       <button mat-stroked-button color="warn" routerLink="/home">Back</button>
     </mat-grid-tile>
   </mat-grid-list>

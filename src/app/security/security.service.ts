@@ -65,7 +65,7 @@ export class SecurityService {
     localStorage.setItem(this.tokenExpiration, autenticationResponse.expiration.toString());
   }
 
-  getToken():string{
+  getToken(){
     
     const token = localStorage.getItem(this.tokenKey);
 

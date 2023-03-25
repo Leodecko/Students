@@ -13,15 +13,26 @@ import Swal from 'sweetalert2';
 export class AddStudentComponent {
 
   form: FormGroup;
+  textPatternName = /^[A-Z][a-z]*$/;
+  textPatternEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
   constructor(private formBuilder: FormBuilder,
     private _studentService: StudentService,
     private _router: Router){
 
       this.form = this.formBuilder.group({
-        name: ['', Validators.required],
-        lastName: ['', Validators.required],
-        email: ['', Validators.required]
+        name: new FormControl('', [
+          Validators.required,
+          Validators.pattern(this.textPatternName)
+        ]),
+        lastName: new FormControl('', [
+          Validators.required,
+          Validators.pattern(this.textPatternName)
+        ]),
+        email: new FormControl('', [
+          Validators.required,
+          Validators.pattern(this.textPatternEmail)
+        ]),
       });
   }
 
@@ -40,6 +51,20 @@ export class AddStudentComponent {
       )
       this._router.navigate(['home']);
     })
+  }
+
+  errMesaggeInput(){
+    var field = this.form.get('name');
+    if  (field?.hasError('required')) return 'This field is required'
+      if(field?.hasError('pattern')) return 'Must begin with a capital letter'
+        return '';
+  }
+
+  errMesaggeEmailInput(){
+    var field = this.form.get('email');
+    if  (field?.hasError('required')) return 'This field is required'
+      if(field?.hasError('pattern')) return 'Is not a valid email'
+        return '';
   }
 
   

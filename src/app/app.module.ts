@@ -32,7 +32,7 @@ import { LoginComponent } from './security/login/login.component';
 import { FormAutenticationComponent } from './security/form-autentication/form-autentication.component';
 import { SignUpComponent } from './security/sign-up/sign-up.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component'
-import { AuthenticationInterceptor } from './security/interceptors/AuthenticationInterceptor';
+import { SecurityInterceptorService } from './interceptors/security-interceptor.service';
 
 
 
@@ -72,9 +72,11 @@ import { AuthenticationInterceptor } from './security/interceptors/Authenticatio
     MatToolbarModule,
     MatMenuModule
   ],
-  providers: [
-    //{ provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }
-  ],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, 
+    useClass: SecurityInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
